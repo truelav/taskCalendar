@@ -12,7 +12,14 @@ class Week extends Component {
   renderWeek = () => {
     const week = [];
     this.props.week.forEach((element, i) => {
-      week.push(<Day key={i} date={element} />);
+      week.push(
+        <Day
+          key={i}
+          date={element}
+          onDateClick={this.props.onDateClick}
+          tasks={this.props.tasks[i]}
+        />
+      );
     });
     return <div className="row">{week}</div>;
   };

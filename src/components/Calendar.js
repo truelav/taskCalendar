@@ -7,39 +7,80 @@ import Day from "./Day";
 import Task from "./Task";
 import WeekDays from "./WeekDays";
 import Header from "./Header";
+import AddTaskForm from "./AddTaskForm";
 
 class Calendar extends React.Component {
   state = {
     thisMonth: [],
-    thisDay: "",
     addingTask: false,
     formattedDate: "",
     currentMonth: new Date(),
     selectedDate: new Date(),
-    task: ""
+    newTask: "",
+    tasks: {
+      w1: [
+        { d1: ["marian"] },
+        { d2: [] },
+        { d3: [] },
+        { d4: ["laundry"] },
+        { d5: [] },
+        { d6: [] },
+        { d7: [] }
+      ],
+      w2: [
+        { d1: [] },
+        { d2: [] },
+        { d3: [] },
+        { d4: [] },
+        { d5: [] },
+        { d6: [] },
+        { d7: [] }
+      ],
+      w3: [
+        { d1: [] },
+        { d2: [] },
+        { d3: [] },
+        { d4: [] },
+        { d5: [] },
+        { d6: [] },
+        { d7: [] }
+      ],
+      w4: [
+        { d1: [] },
+        { d2: [] },
+        { d3: [] },
+        { d4: [] },
+        { d5: [] },
+        { d6: [] },
+        { d7: [] }
+      ],
+      w5: [
+        { d1: [] },
+        { d2: [] },
+        { d3: [] },
+        { d4: [] },
+        { d5: [] },
+        { d6: [] },
+        { d7: [] }
+      ]
+    }
   };
 
-  componentWillMount() {}
+  handleAddingTaskAndDate = () => {};
 
-  renderCells() {
-    // this.state.thisMonth.map((day, index) => {
-    return <div className="body">{this.state.thisMonth}</div>;
-    // });
-  }
-
-  handleAddTask = () => {
-    console.log(this.state.currentMonth);
-    this.setState({ addingTask: true });
-  };
-
-  createNewTask = day => {
-    console.log(day);
+  createNewTask = (task, date) => {
+    console.log(task, date);
+    this.setState({
+      newTask: task,
+      addingTask: false
+    });
   };
 
   onDateClick = day => {
     console.log("the day is " + day);
     this.setState({
-      selectedDate: day
+      selectedDate: day,
+      addingTask: true
     });
   };
 
@@ -53,7 +94,6 @@ class Calendar extends React.Component {
     this.setState({
       currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
     });
-    console.log(this.state);
   };
 
   render() {
@@ -62,13 +102,20 @@ class Calendar extends React.Component {
         <div className="calendar">
           <Header />
           <WeekDays />
-          <Month />
+          <Month
+            onDateClick={this.onDateClick}
+            newTask={this.state.newTask}
+            tasks={this.state.tasks}
+          />
         </div>
       );
     } else if (this.state.addingTask === true) {
-      return <Day />;
-    } else if (this.state.selectedDate !== new Date()) {
-      return <div>{console.log(this.state.selectedDate)}</div>;
+      return (
+        <AddTaskForm
+          day={this.state.selectedDate}
+          createNewTask={this.createNewTask}
+        />
+      );
     }
   }
 }

@@ -6,7 +6,7 @@ import Day from "./Day";
 
 class Month extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       currentMonth: new Date(),
       currentDay: new Date(),
@@ -60,7 +60,6 @@ class Month extends Component {
       week = [];
     }
     this.setState({ selectedMonth: rows });
-    console.log(rows);
   }
 
   //   renderMonth() {
@@ -68,14 +67,33 @@ class Month extends Component {
   //   }
 
   render() {
-    console.log(this.state.selectedMonth);
     return (
       <div className="body">
-        <Week week={this.state.selectedMonth[0]} />
-        <Week week={this.state.selectedMonth[1]} />
-        <Week week={this.state.selectedMonth[2]} />
-        <Week week={this.state.selectedMonth[3]} />
-        <Week week={this.state.selectedMonth[4]} />
+        <Week
+          week={this.state.selectedMonth[0]}
+          onDateClick={this.props.onDateClick}
+          tasks={this.props.tasks.w1}
+        />
+        <Week
+          week={this.state.selectedMonth[1]}
+          onDateClick={this.props.onDateClick}
+          tasks={this.props.tasks.w1}
+        />
+        <Week
+          week={this.state.selectedMonth[2]}
+          onDateClick={this.props.onDateClick}
+          tasks={this.props.tasks.w1}
+        />
+        <Week
+          week={this.state.selectedMonth[3]}
+          onDateClick={this.props.onDateClick}
+          tasks={this.props.tasks.w1}
+        />
+        <Week
+          week={this.state.selectedMonth[4]}
+          onDateClick={this.props.onDateClick}
+          tasks={this.props.tasks.w1}
+        />
       </div>
     );
   }
