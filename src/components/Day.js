@@ -12,34 +12,16 @@ class Day extends Component {
     };
   }
 
-  //   componentDidMount() {
-  //     this.setState({
-  //       currentDate: this.props.currentDate
-  //     });
-  //   }
-
-  handleAddTask = () => {};
-
-  renderTasks = () => {};
-
-  handleMarkAsDone = event => {
-    console.log(event);
-    // let array = [...this.state.tasks].filter(task => {
-    //   return task === task;
-    // });
-    // this.setState({});
-  };
-
   render() {
-    const { day } = this.props;
+    console.log(this.props);
     // if (!this.state.addingTaks) {
     return (
       <div
         className="individualDay col cell"
-        onClick={() => this.props.onDateClick(this.props.day)}
+        onClick={() => this.props.onDateClick(this.props.date)}
       >
-        <span className="number">{this.props.formattedDate}</span>
-        <span className="bg">{this.props.formattedDate}</span>
+        <span className="number">{this.props.date}</span>
+        <span className="bg">{this.props.date}</span>
         <Tasks
           tasks={this.state.tasks}
           onClick={() => this.props.createNewTask("andreica")}
